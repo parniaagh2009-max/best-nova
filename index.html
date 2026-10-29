@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1d2924">
+  <meta name="description" content="طراحی دکوراسیون داخلی، ساخت کابینت آشپزخانه و اجرای فضاهای مدرن با گروه معماری خانه‌نو">
+  <title>خانه‌نو | طراحی داخلی و کابینت</title>
+  <style>
+    :root {
+      --forest: #1d2924;
+      --forest-2: #2c3b33;
+      --cream: #f7f4ee;
+      --paper: #fffdf8;
+      --gold: #c5a46d;
+      --text: #26312b;
+      --muted: #6d756f;
+      --line: rgba(38,49,43,.13);
+      --radius: 22px;
+      --shadow: 0 18px 50px rgba(29,41,36,.10);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      font-family: Tahoma, "Segoe UI", sans-serif;
+      background: var(--paper); color: var(--text); line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(1160px, calc(100% - 44px)); margin-inline: auto; }
+    .topbar { background: var(--forest); color: #f8f4ec; font-size: 12px; }
+    .topbar-inner { display:flex; justify-content:space-between; align-items:center; gap:16px; min-height:36px; }
+    .topbar span { opacity:.86; }
+    .topbar a { color: #e2c797; }
+    header {
+      position: sticky; top: 0; z-index: 20; background: rgba(255,253,248,.94);
+      backdrop-filter: blur(14px); border-bottom: 1px solid rgba(38,49,43,.07);
+    }
+    .nav { min-height: 78px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .brand { display:flex; align-items:center; gap:11px; flex-shrink:0; }
+    .brand-mark { width:42px; height:42px; display:grid; place-items:center; background:var(--forest); color:var(--gold); border-radius:13px; font-size:22px; }
+    .brand strong { display:block; font-size:20px; letter-spacing:-.5px; line-height:1.4; }
+    .brand small { color:var(--muted); font-size:10px; letter-spacing:.5px; }
+    .nav-links { display:flex; align-items:center; gap:28px; font-size:13px; color:#4f5a53; }
+    .nav-links a { transition: color .2s; }
+    .nav-links a:hover { color:#a47e40; }
+    .btn { display:inline-flex; justify-content:center; align-items:center; gap:8px; border:1px solid transparent; border-radius:999px; padding:12px 22px; font-size:13px; font-weight:700; cursor:pointer; transition:transform .2s, background .2s, border-color .2s; }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-primary { background:var(--gold); color:#1d2924; }
+    .btn-primary:hover { background:#d3b681; }
+    .btn-dark { background:var(--forest); color:white; }
+    .btn-outline { border-color:var(--line); color:var(--forest); background:transparent; }
+    .menu-toggle { display:none; background:none; border:0; font-size:25px; color:var(--forest); cursor:pointer; }
+    .hero { background:var(--cream); padding:46px 0 66px; overflow:hidden; }
+    .hero-grid { display:grid; grid-template-columns: .92fr 1.08fr; align-items:center; gap:54px; }
+    .eyebrow { display:inline-flex; align-items:center; gap:10px; color:#9a7943; font-size:12px; font-weight:bold; margin-bottom:17px; }
+    .eyebrow:before { content:""; width:28px; height:1px; background:var(--gold); }
+    h1 { font-size:clamp(34px, 4.3vw, 58px); line-height:1.48; letter-spacing:-1.6px; color:var(--forest); margin-bottom:19px; }
+    h1 em { color:#ad8950; font-style:normal; }
+    .hero-copy { color:#68726b; font-size:15px; max-width:490px; margin-bottom:27px; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:32px; }
+    .hero-stats { display:flex; gap:30px; flex-wrap:wrap; }
+    .stat strong { display:block; font-size:23px; color:var(--forest); line-height:1.5; }
+    .stat span { font-size:11px; color:var(--muted); }
+    .hero-visual { position:relative; min-height:480px; }
+    .hero-image { position:absolute; inset:0 0 0 32px; border-radius:180px 180px 22px 22px; overflow:hidden; box-shadow:var(--shadow); background:#d8d0c3; }
+    .hero-image img { width:100%; height:100%; object-fit:cover; display:block; }
+    .image-label { position:absolute; right:0; bottom:28px; background:var(--paper); border-radius:16px; padding:15px 20px; box-shadow:var(--shadow); display:flex; gap:12px; align-items:center; }
+    .image-label .icon { display:grid; place-items:center; width:42px; height:42px; border-radius:12px; background:#eee4d2; font-size:20px; }
+    .image-label strong { display:block; font-size:13px; }
+    .image-label small { color:var(--muted); font-size:10px; }
+    .section { padding:92px 0; }
+    .section-soft { background:#f7f5f0; }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:36px; }
+    .section-head h2 { color:var(--forest); font-size:clamp(26px,3vw,38px); line-height:1.5; }
+    .section-head p { color:var(--muted); font-size:13px; max-width:420px; }
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .service-card { background:#fff; border:1px solid rgba(38,49,43,.07); padding:27px 25px; border-radius:var(--radius); transition:transform .25s, box-shadow .25s; }
+    .service-card:hover { transform:translateY(-5px); box-shadow:var(--shadow); }
+    .service-icon { width:54px; height:54px; display:grid; place-items:center; border-radius:16px; background:#f1eadc; font-size:25px; margin-bottom:20px; }
+    .service-card h3 { font-size:17px; color:var(--forest); margin-bottom:9px; }
+    .service-card p { color:var(--muted); font-size:12px; margin-bottom:17px; }
+    .text-link { font-size:12px; font-weight:bold; color:#9a7943; }
+    .portfolio-grid { display:grid; grid-template-columns:1.12fr .88fr .88fr; grid-template-rows:230px 190px; gap:16px; }
+    .project { position:relative; overflow:hidden; border-radius:18px; background:#ddd; }
+    .project:first-child { grid-row:span 2; }
+    .project img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s; }
+    .project:hover img { transform:scale(1.06); }
+    .project:after { content:""; position:absolute; inset:35% 0 0; background:linear-gradient(transparent,rgba(16,25,20,.82)); }
+    .project-info { position:absolute; z-index:1; bottom:17px; right:19px; left:18px; color:white; }
+    .project-info span { color:#e5cfaa; font-size:10px; }
+    .project-info h3 { font-size:16px; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+    .about-image { position:relative; min-height:420px; }
+    .about-image img { width:87%; height:420px; object-fit:cover; border-radius:22px; display:block; }
+    .about-note { position:absolute; left:0; bottom:25px; background:var(--forest); color:#fff; padding:22px; border-radius:18px; width:190px; box-shadow:var(--shadow); }
+    .about-note strong { display:block; color:#e2c797; font-size:30px; }
+    .about-note span { font-size:11px; color:#e6e8e4; }
+    .about-copy h2 { font-size:clamp(27px,3vw,39px); color:var(--forest); line-height:1.5; margin-bottom:17px; }
+    .about-copy>p { color:var(--muted); font-size:13px; margin-bottom:22px; }
+    .check-list { display:grid; gap:12px; margin:24px 0 28px; }
+    .check-list div { display:flex; align-items:center; gap:10px; font-size:13px; }
+    .check { width:23px; height:23px; flex-shrink:0; border-radius:50%; display:grid; place-items:center; background:#e8efe8; color:#3b7652; font-size:12px; }
+    .process-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+    .process-step { border-top:1px solid #d7d4cc; padding-top:20px; }
+    .process-step .number { color:#b3925e; font-size:12px; font-weight:bold; letter-spacing:1px; }
+    .process-step h3 { font-size:16px; margin:10px 0 8px; color:var(--forest); }
+    .process-step p { color:var(--muted); font-size:12px; }
+    .quote-band { background:var(--forest); color:#fff; padding:54px 0; }
+    .quote-inner { display:flex; justify-content:space-between; align-items:center; gap:30px; }
+    .quote-inner h2 { font-size:clamp(24px,3vw,34px); line-height:1.6; }
+    .quote-inner p { color:#c7d0c9; font-size:13px; margin-top:7px; }
+    .contact-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:55px; }
+    .contact-copy h2 { font-size:34px; color:var(--forest); line-height:1.5; margin-bottom:14px; }
+    .contact-copy>p { font-size:13px; color:var(--muted); margin-bottom:26px; }
+    .contact-item { display:flex; align-items:center; gap:13px; margin:17px 0; }
+    .contact-item .service-icon { margin:0; width:45px; height:45px; font-size:20px; }
+    .contact-item small { display:block; color:var(--muted); font-size:10px; }
+    .contact-item strong { font-size:13px; direction:ltr; display:block; text-align:right; }
+    .contact-form { background:#f8f6f1; padding:30px; border-radius:var(--radius); }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .field { margin-bottom:15px; }
+    .field label { display:block; font-size:11px; color:#4f5a53; margin-bottom:7px; }
+    .field input, .field select, .field textarea { width:100%; border:1px solid #e3e0d8; border-radius:11px; background:#fffdf9; padding:12px 13px; outline:none; color:var(--text); font-size:12px; transition:border .2s; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color:var(--gold); }
+    .field textarea { min-height:105px; resize:vertical; }
+    .contact-form .btn { width:100%; }
+    #form-message { display:none; margin-top:13px; font-size:12px; color:#2f704b; text-align:center; }
+    footer { background:#17211c; color:#d8dfd9; padding:27px 0; font-size:11px; }
+    .footer-inner { display:flex; justify-content:space-between; gap:20px; align-items:center; }
+    .footer-inner span { color:#aeb9b0; }
+    .socials { display:flex; gap:15px; }
+    .socials a:hover { color:#e2c797; }
+    .back-top { position:fixed; bottom:20px; left:20px; z-index:10; width:43px; height:43px; border-radius:50%; border:0; background:var(--gold); color:var(--forest); font-size:20px; cursor:pointer; box-shadow:0 5px 20px #0002; opacity:0; pointer-events:none; transition:opacity .2s; }
+    .back-top.show { opacity:1; pointer-events:auto; }
+    @media (max-width: 900px) {
+      .nav-links { gap:15px; }
+      .nav-cta { display:none; }
+      .hero-grid { gap:28px; }
+      .hero-visual { min-height:410px; }
+      .services-grid { grid-template-columns:repeat(2,1fr); }
+      .portfolio-grid { grid-template-rows:210px 170px; }
+      .about-grid { gap:35px; }
+      .contact-grid { gap:30px; }
+    }
+    @media (max-width: 680px) {
+      .container { width:min(100% - 30px, 540px); }
+      .topbar-inner { justify-content:center; text-align:center; }
+      .topbar-inner span:last-child { display:none; }
+      .nav { min-height:68px; }
+      .menu-toggle { display:block; }
+      .nav-links { display:none; position:absolute; top:68px; right:0; left:0; padding:18px 24px 24px; background:var(--paper); border-bottom:1px solid var(--line); flex-direction:column; align-items:stretch; gap:14px; box-shadow:0 15px 20px #0000000a; }
+      .nav-links.open { display:flex; }
+      .nav-links a { padding:4px 0; }
+      .hero { padding:34px 0 48px; }
+      .hero-grid { grid-template-columns:1fr; gap:32px; }
+      h1 { font-size:36px; }
+      .hero-copy { font-size:13px; }
+      .hero-visual { min-height:360px; }
+      .hero-image { inset:0 15px 0 25px; border-radius:130px 130px 20px 20px; }
+      .image-label { bottom:16px; right:0; padding:10px 13px; }
+      .section { padding:65px 0; }
+      .section-head { align-items:start; flex-direction:column; gap:10px; margin-bottom:25px; }
+      .services-grid { grid-template-columns:1fr; gap:12px; }
+      .service-card { padding:22px; }
+      .portfolio-grid { grid-template-columns:1fr 1fr; grid-template-rows:250px 170px 170px; gap:10px; }
+      .project:first-child { grid-column:span 2; grid-row:auto; }
+      .project-info h3 { font-size:14px; }
+      .about-grid, .contact-grid { grid-template-columns:1fr; gap:35px; }
+      .about-image { min-height:330px; }
+      .about-image img { height:330px; width:90%; }
+      .about-note { width:160px; padding:16px; bottom:15px; }
+      .process-grid { grid-template-columns:1fr 1fr; gap:24px 18px; }
+      .quote-inner { align-items:flex-start; flex-direction:column; }
+      .form-row { grid-template-columns:1fr; gap:0; }
+      .contact-form { padding:21px; }
+      .footer-inner { flex-direction:column; text-align:center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after { transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>طراحی دقیق، اجرای حرفه‌ای، آرامش در خانه</span>
+      <span>برای مشاوره تماس بگیرید: <a href="tel:+982100000000">۰۲۱-۰۰۰۰-۰۰۰۰</a></span>
+    </div>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="خانه‌نو، صفحه اصلی">
+        <span class="brand-mark">خ</span>
+        <span><strong>خانه‌نو</strong><small>طراحی داخلی و کابینت</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="باز کردن منو" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="منوی اصلی">
+        <a href="#home">صفحه اصلی</a>
+        <a href="#services">خدمات ما</a>
+        <a href="#portfolio">نمونه‌کارها</a>
+        <a href="#about">درباره ما</a>
+        <a href="#contact">تماس با ما</a>
+      </nav>
+      <a class="btn btn-dark nav-cta" href="#contact">درخواست مشاوره <span>←</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="eyebrow">خانه‌ای به سبک شما</div>
+          <h1>فضای رؤیایی‌تان را<br><em>با هم می‌سازیم.</em></h1>
+          <p class="hero-copy">از ایده تا اجرا، کنار شما هستیم تا خانه‌ای زیبا، کاربردی و ماندگار داشته باشید. طراحی دکوراسیون داخلی و ساخت کابینت با توجه به سلیقه و بودجه شما.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#portfolio">دیدن نمونه‌کارها <span>↙</span></a>
+            <a class="btn btn-outline" href="#contact">مشاوره رایگان</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><strong>+۱۲</strong><span>سال تجربه</span></div>
+            <div class="stat"><strong>+۳۵۰</strong><span>پروژه اجراشده</span></div>
+            <div class="stat"><strong>۹۸٪</strong><span>رضایت مشتریان</span></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85" alt="طراحی داخلی مدرن با رنگ‌های گرم" fetchpriority="high">
+          </div>
+          <div class="image-label">
+            <span class="icon">✦</span>
+            <span><strong>طراحی با جزئیات</strong><small>زیبایی در کنار کارایی</small></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="eyebrow">خدمات تخصصی ما</div><h2>از یک ایده تا یک خانه کامل</h2></div>
+          <p>هر فضا داستان خودش را دارد. ما با شناخت نیازهای شما، بهترین ترکیب از زیبایی، کیفیت و استفاده هوشمندانه از فضا را طراحی می‌کنیم.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">⌂</div><h3>دکوراسیون داخلی</h3>
+            <p>طراحی هماهنگ و اصولی برای نشیمن، اتاق خواب و تمام فضاهای خانه با توجه به سبک زندگی شما.</p>
+            <a class="text-link" href="#contact">شروع طراحی <span>←</span></a>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">▤</div><h3>کابینت آشپزخانه</h3>
+            <p>طراحی و ساخت کابینت مدرن، نئوکلاسیک و کلاسیک با متریال باکیفیت و چیدمان کاربردی.</p>
+            <a class="text-link" href="#contact">سفارش کابینت <span>←</span></a>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">✧</div><h3>بازسازی و اجرا</h3>
+            <p>مدیریت و اجرای پروژه از انتخاب متریال تا نصب نهایی، با برنامه‌ریزی و توجه به جزئیات.</p>
+            <a class="text-link" href="#contact">مشاوره اجرا <span>←</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="portfolio">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="eyebrow">گزیده پروژه‌ها</div><h2>فضاهایی برای زندگی بهتر</h2></div>
+          <p>نگاهی به بخشی از ایده‌ها و سبک‌هایی که می‌توانند الهام‌بخش خانه بعدی شما باشند.</p>
+        </div>
+        <div class="portfolio-grid">
+          <a class="project" href="#contact">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85" alt="نشیمن مدرن با طراحی مینیمال" loading="lazy">
+            <div class="project-info"><span>دکوراسیون داخلی</span><h3>آرامش در سادگی</h3></div>
+          </a>
+          <a class="project" href="#contact">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=85" alt="طراحی خانه مدرن" loading="lazy">
+            <div class="project-info"><span>طراحی فضا</span><h3>خانه‌ای روشن</h3></div>
+          </a>
+          <a class="project" href="#contact">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=85" alt="فضای نشیمن شیک" loading="lazy">
+            <div class="project-info"><span>طراحی نشیمن</span><h3>تعادل رنگ و نور</h3></div>
+          </a>
+          <a class="project" href="#contact">
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=85" alt="آشپزخانه با کابینت‌های مدرن" loading="lazy">
+            <div class="project-info"><span>کابینت آشپزخانه</span><h3>گرمای چوب</h3></div>
+          </a>
+          <a class="project" href="#contact">
+            <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=800&q=85" alt="طراحی داخلی با متریال طبیعی" loading="lazy">
+            <div class="project-info"><span>طراحی مدرن</span><h3>جزئیات ماندگار</h3></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1000&q=85" alt="جزئیات متریال و طراحی داخلی" loading="lazy">
+          <div class="about-note"><strong>از ایده تا اجرا</strong><span>همراه شما در تمام مراحل پروژه</span></div>
+        </div>
+        <div class="about-copy">
+          <div class="eyebrow">داستان خانه‌نو</div>
+          <h2>زیبایی واقعی، در فضایی که برای شما ساخته شده است.</h2>
+          <p>ما باور داریم طراحی خوب فقط ظاهر زیبا نیست؛ هر گوشه از خانه باید متناسب با نیازهای روزمره شما باشد. به همین دلیل، قبل از هر طرحی به حرف‌ها، سلیقه و سبک زندگی شما گوش می‌دهیم.</p>
+          <div class="check-list">
+            <div><span class="check">✓</span> طراحی اختصاصی متناسب با سلیقه و بودجه شما</div>
+            <div><span class="check">✓</span> استفاده از متریال باکیفیت و بادوام</div>
+            <div><span class="check">✓</span> زمان‌بندی شفاف و همراهی تا پایان اجرا</div>
+            <div><span class="check">✓</span> توجه به جزئیات و استفاده بهینه از فضا</div>
+          </div>
+          <a class="btn btn-dark" href="#contact">درباره پروژه‌تان صحبت کنیم <span>←</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="eyebrow">مسیر همکاری</div><h2>ساده، شفاف و مرحله‌به‌مرحله</h2></div>
+          <p>در تمام مراحل می‌دانید چه اتفاقی می‌افتد و قدم بعدی چیست.</p>
+        </div>
+        <div class="process-grid">
+          <div class="process-step"><span class="number">مرحله ۰۱</span><h3>گفت‌وگو و مشاوره</h3><p>نیازها، سلیقه، ابعاد فضا و بودجه شما را بررسی می‌کنیم.</p></div>
+          <div class="process-step"><span class="number">مرحله ۰۲</span><h3>طراحی و پیشنهاد</h3><p>طرح پیشنهادی، متریال و برآورد هزینه را با شما نهایی می‌کنیم.</p></div>
+          <div class="process-step"><span class="number">مرحله ۰۳</span><h3>ساخت و اجرا</h3><p>پس از تأیید طرح، با نظارت دقیق وارد مرحله اجرا می‌شویم.</p></div>
+          <div class="process-step"><span class="number">مرحله ۰۴</span><h3>تحویل نهایی</h3><p>جزئیات را بررسی می‌کنیم و فضای جدید را به شما تحویل می‌دهیم.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-band">
+      <div class="container quote-inner">
+        <div><h2>برای تغییر فضای زندگی‌تان آماده‌اید؟</h2><p>یک گفت‌وگوی کوتاه می‌تواند شروع یک تغییر بزرگ باشد.</p></div>
+        <a class="btn btn-primary" href="#contact">دریافت مشاوره رایگان <span>←</span></a>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <div class="eyebrow">در تماس باشیم</div>
+          <h2>پروژه بعدی شما از اینجا شروع می‌شود.</h2>
+          <p>فرم را پر کنید تا برای گفت‌وگو درباره ایده‌ها و نیازهایتان با شما هماهنگ کنیم.</p>
+          <div class="contact-item"><span class="service-icon">☎</span><div><small>تلفن تماس</small><strong>۰۲۱-۰۰۰۰-۰۰۰۰</strong></div></div>
+          <div class="contact-item"><span class="service-icon">✉</span><div><small>ایمیل</small><strong>hello@khanenow.example</strong></div></div>
+          <div class="contact-item"><span class="service-icon">⌖</span><div><small>محدوده فعالیت</small><strong style="direction:rtl">تهران و اطراف</strong></div></div>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="field"><label for="name">نام و نام خانوادگی</label><input id="name" name="name" type="text" placeholder="نام شما" required></div>
+            <div class="field"><label for="phone">شماره تماس</label><input id="phone" name="phone" type="tel" placeholder="۰۹۱۲۱۲۳۴۵۶۷" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="service">خدمت موردنظر</label><select id="service" name="service" required><option value="">انتخاب کنید</option><option>دکوراسیون داخلی</option><option>کابینت آشپزخانه</option><option>بازسازی و اجرا</option><option>مشاوره و برآورد هزینه</option></select></div>
+            <div class="field"><label for="budget">بودجه تقریبی</label><select id="budget" name="budget"><option value="">فعلاً مشخص نیست</option><option>کمتر از ۱۰۰ میلیون تومان</option><option>۱۰۰ تا ۳۰۰ میلیون تومان</option><option>بیشتر از ۳۰۰ میلیون تومان</option></select></div>
+          </div>
+          <div class="field"><label for="message">توضیحات پروژه</label><textarea id="message" name="message" placeholder="کمی درباره فضایی که می‌خواهید تغییر دهید بنویسید..."></textarea></div>
+          <button class="btn btn-primary" type="submit">ثبت درخواست مشاوره <span>←</span></button>
+          <p id="form-message" role="status">فرم شما در این نسخه نمایشی ثبت نشده است. برای دریافت پیام‌ها، فرم را به سرویس یا سرور خود متصل کنید.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="brand"><span class="brand-mark">خ</span><span><strong>خانه‌نو</strong><small style="color:#aeb9b0">طراحی داخلی و کابینت</small></span></div>
+      <span>© <span id="year"></span> خانه‌نو. تمامی حقوق محفوظ است.</span>
+      <div class="socials"><a href="#contact">اینستاگرام</a><a href="#contact">واتساپ</a><a href="#home">بازگشت به بالا ↑</a></div>
+    </div>
+  </footer>
+
+  <button class="back-top" id="backTop" aria-label="بازگشت به بالای صفحه">↑</button>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const backTop = document.getElementById('backTop');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '×' : '☰';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      backTop.classList.toggle('show', window.scrollY > 500);
+    }, { passive: true });
+
+    backTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('contactForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const message = document.getElementById('form-message');
+      message.style.display = 'block';
+      message.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  </script>
+</body>
+</html>
